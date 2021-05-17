@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatStepper } from '@angular/material/stepper';
+=======
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+>>>>>>> 211f31533018ca456512fcdef0593d78a91f5e93
 import { Subscription } from "rxjs";
 
 //services
@@ -13,7 +18,10 @@ import { DataService } from '../services/data.service';
 })
 export class ResumePublicComponent implements OnInit {
   private subscriptions: Subscription[] = [];
+<<<<<<< HEAD
   @ViewChild('wizardStepper') stepper: MatStepper;
+=======
+>>>>>>> 211f31533018ca456512fcdef0593d78a91f5e93
 
   resume: any = {};
   username: string = "";
@@ -61,6 +69,7 @@ export class ResumePublicComponent implements OnInit {
         this.resume = result;
         this.isLoading = false;
 
+<<<<<<< HEAD
       }).catch(this.handleErrors);
   }
 
@@ -76,5 +85,10 @@ export class ResumePublicComponent implements OnInit {
           length = this.stepper._steps.length;
 
       if(index+1 < length) this.stepper.next();
+=======
+        console.log(this.resume);
+
+      }).catch(this.handleErrors);
+>>>>>>> 211f31533018ca456512fcdef0593d78a91f5e93
   }
 }
