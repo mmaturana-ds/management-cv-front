@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-<<<<<<< HEAD
 import { formatDate } from '@angular/common';
-=======
->>>>>>> 211f31533018ca456512fcdef0593d78a91f5e93
 
 @Injectable()
 export class DataService {
@@ -53,7 +50,6 @@ export class DataService {
           .then(response => response)
           .catch(this.handleErrors);
     }
-<<<<<<< HEAD
 
     public uploadFile(imagen: File): Promise<any> {
         const endpoint = `${this.contextApi}/cloudinary/upload`;
@@ -65,6 +61,4 @@ export class DataService {
             .then(response => response)
             .catch(this.handleErrors);
     }
-=======
->>>>>>> 211f31533018ca456512fcdef0593d78a91f5e93
 }

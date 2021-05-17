@@ -41,11 +41,7 @@
  }
 
 .banner {
-<<<<<<< HEAD
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.imgur.com/8qmkgjD.jpg');
-=======
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/banner.jpg');
->>>>>>> 211f31533018ca456512fcdef0593d78a91f5e93
     background-position: 50%;
     background-size: cover;
     padding: 20px;
@@ -366,7 +362,6 @@ a {
     border-radius: 50%;
 }
 
-<<<<<<< HEAD
 .sb-flex-display {
     display: -webkit-box !important;
     display: -ms-flexbox !important;
@@ -384,8 +379,6 @@ a {
     padding: 0 0px 24px 0px !important;
 }
 
-=======
->>>>>>> 211f31533018ca456512fcdef0593d78a91f5e93
 /* input */
 ::ng-deep .mat-select-value{    
     color: white!important;
@@ -454,7 +447,6 @@ input {
     font-size: 18px;
 }
 
-<<<<<<< HEAD
 .sb-mcv-back.mat-icon-button {
     width: 50px;
     height: 50px;
@@ -470,8 +462,6 @@ input {
     font-size: 32px;
 }
 
-=======
->>>>>>> 211f31533018ca456512fcdef0593d78a91f5e93
 /* responsive */
 @media screen and (max-width: 1080px) {
     .container {

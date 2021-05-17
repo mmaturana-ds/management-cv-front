@@ -45,7 +45,6 @@ export class AuthService {
         .catch(this.handleErrors);
     }
 
-<<<<<<< HEAD
     public createUser(data: any): Promise<any> {
         const endpoint = `${this.contextApi}/auth/nuevo`;
 
@@ -54,8 +53,6 @@ export class AuthService {
             .catch(this.handleErrors);
     }
 
-=======
->>>>>>> 211f31533018ca456512fcdef0593d78a91f5e93
     public setLoggedIn(): void {
       this.loggedIn.next(true);
     }
