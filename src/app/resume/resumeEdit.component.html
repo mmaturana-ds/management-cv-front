@@ -1,0 +1,25 @@
+<div class="sb-content">
+  <div style="position: relative;">
+      <div *ngIf="isLoading" class="sb-loading-content sb-simple-loading">
+          <mat-spinner diameter="35" strokeWidth="5"
+              style="margin-top: 110px;">
+          </mat-spinner>
+      </div>
+      <div class="sb-title-small">Editar</div>
+      <div class="sb-wizard-wrapper" *ngIf="!isLoading && username">
+        <div class="sb-wizard-form">
+            <mat-card class="sb-card-wizard">
+                <mat-horizontal-stepper #wizardStepper linear class="sb-horizontal-stepper">
+                    <!-- step 0 -->
+                    <mat-step>
+                        <div style="text-align: center;">
+                            <div class="sb-title-wizard">Completa la información personal y de contacto</div>
+                            <div style="height: 10px;"></div>
+                        </div>
+                    </mat-step>
+                </mat-horizontal-stepper>
+            </mat-card>
+        </div>
+      </div>
+  </div>
+</div>

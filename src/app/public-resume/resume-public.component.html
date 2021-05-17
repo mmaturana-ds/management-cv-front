@@ -1,0 +1,100 @@
+<div class="csp-app">
+  <div class="csp-body" *ngIf="!isLoading">
+    <div class="banner">
+      <div class="container">
+        <div class="cv-custom-table">
+            <div class="cv-custom-table-cell width-75">
+              <h2 class="display-2 text-white">{{resume.nombre}}</h2>
+              <h4 class="display-3 text-white">{{resume.email}}</h4>
+            </div>
+            <div class="cv-custom-table-cell avatar width-25">
+              <img alt="" src="{{resume.avatar}}" width="120" height="120">
+            </div>
+        </div>
+      </div>
+    </div>
+    <div style="height: 20px;"></div>
+    <div style="padding: 20px;">
+      <div class="container">
+        <div class="cv-custom-table">
+            <div class="cv-custom-table-cell width-25 cv-container-left">
+              <div>
+                <div class="cv-section-titile">Personal</div>
+                <div style="height: 10px;"></div>
+                <mat-list role="list">
+                  <mat-list-item role="listitem" class="cv-item-icon personal-info">{{resume.nombre}}</mat-list-item>
+                  <mat-list-item role="listitem" class="cv-item-icon personal-info">{{resume.nacionalidad}}</mat-list-item>
+                </mat-list>
+              </div>
+              <div style="height: 30px;"></div>
+              <div>
+                <div class="cv-section-titile">Contacto</div>
+                <div style="height: 10px;"></div>
+                <mat-list role="list">
+                  <mat-list-item role="listitem" class="cv-item-icon"><mat-icon>contact_mail</mat-icon> {{resume.email}}</mat-list-item>
+                  <mat-list-item role="listitem" class="cv-item-icon"><mat-icon>phone</mat-icon>  {{resume.fono}}</mat-list-item>
+                  <mat-list-item role="listitem" class="cv-item-icon"><mat-icon>place</mat-icon> {{resume.direccion}}</mat-list-item>
+                </mat-list>
+              </div>
+              <div style="height: 30px;"></div>
+              <div>
+                <div class="cv-section-titile">Habilidades</div>
+                <div style="height: 18px;"></div>
+                <ng-container *ngFor="let skill of resume.skills">
+                  <div class="cv-custom-table">
+                    <div class="cv-custom-table-cell width-40 padding" style="padding-right: 5px;">
+                      {{skill.nombre}}:
+                    </div>
+                    <div class="cv-custom-table-cell width-60 padding" style="vertical-align: middle;">
+                      <mat-progress-bar mode="determinate" [value]="skill.nota"></mat-progress-bar>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <div class="cv-custom-table-cell width-75 cv-container-right">
+              <div>
+                <div class="cv-section-titile">Experiencias de Trabajo</div>
+                <div style="height: 18px;"></div>
+                <ng-container *ngFor="let experience of resume.experiences">
+                  <div class="cv-custom-table" style="padding-top: 10px;">
+                    <div class="cv-custom-table-cell width-75">
+                      <span class="cv-experiences-titile">{{experience.nombre}}</span>
+                    </div>
+                    <div class="cv-custom-table-cell width-25" style="text-align: right;">
+                      {{experience.fechaInicio | date: 'yyyy'}} - {{experience.fechaFin | date: 'yyyy'}}
+                    </div>
+                  </div>
+                  <div style="height: 10px;"></div>
+                  <div>
+                    {{experience.descripcion}}
+                  </div>
+                  <div style="height: 20px;"></div>
+                </ng-container>
+              </div>
+              <div style="height: 30px;"></div>
+              <div>
+                <div class="cv-section-titile">Estudios</div>
+                <div style="height: 18px;"></div>
+                <ng-container *ngFor="let study of resume.studies">
+                  <div class="cv-custom-table" style="padding-top: 10px;">
+                    <div class="cv-custom-table-cell width-75">
+                      <span class="cv-experiences-titile">{{study.nombre}}</span>
+                    </div>
+                    <div class="cv-custom-table-cell width-25" style="text-align: right;">
+                      {{study.fechaInicio | date: 'yyyy'}} - {{study.fechaFin | date: 'yyyy'}}
+                    </div>
+                  </div>
+                  <div style="height: 10px;"></div>
+                  <div>
+                    {{study.descripcion}}
+                  </div>
+                  <div style="height: 20px;"></div>
+                </ng-container>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
