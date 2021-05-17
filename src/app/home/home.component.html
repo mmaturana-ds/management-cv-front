@@ -1,0 +1,56 @@
+<div class="csp-app">
+  <div class="csp-body">
+    <div class="banner">
+      <div class="csp-toolbar">
+          <div class="container" style="padding: 0;">
+            <div id="logo">
+              <img alt="" src="assets/logo-white.png" width="164" height="60" >
+            </div>
+            <div id="navbarExpand" class="navbar">
+              <a mat-raised-button color="primary" routerLink="/resume">Crea tu currículum</a>
+            </div>
+            <div class="navbar-collapse">
+              <button id="menuToggle" mat-icon-button aria-label="toggle" [matMenuTriggerFor]="menu2">
+                <mat-icon class="icon-toggle">menu</mat-icon>
+              </button>
+              <mat-menu #menu2="matMenu">
+                <a mat-menu-item routerLink='/resume'>Crea tu currículum</a>
+              </mat-menu>
+            </div>
+          </div>
+      </div>
+
+      <div class="container">
+        <h2 class="display-2 text-white">Management CV</h2>
+        <h4 class="display-3 text-white">Crea y busca currículums</h4>
+        <form [formGroup]="searchForm">
+          <div class="main-search-input">
+            <mat-form-field appearance="standard" class="main-search-input-item">
+              <input matInput placeholder="Busca por Nombre de Usuario" formControlName="name">
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div style="height: 20px;"></div>
+    <div style="padding: 20px;">
+      <div class="container">
+        <div class="cards">
+          <ng-container *ngFor="let resume of resumens">
+            <a [routerLink]="['/resume-public', resume.nombreUsuario]">
+              <div class="card" [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('+resume.banner+')'}">
+                <div class="card-content">
+                  <div class="card-logo">
+                    <img alt="" src="{{resume.avatar}}">
+                  </div>
+                  <h3 class="mb-2">{{resume.nombre}}</h3>
+                  <p class="card-item-subtitle">{{resume.email}}</p>
+                </div>
+              </div>
+            </a>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

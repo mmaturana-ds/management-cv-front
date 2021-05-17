@@ -1,0 +1,25 @@
+<div class="sb-app">
+  <mat-toolbar class="sb-header">
+      <span class="sb-header-content sb-header-content-home">
+          <span class="sb-logo-wrapper">
+            <a id="logo" routerLink="/">
+              <img alt="" src="assets/logo.png" width="109" height="40" >
+            </a>
+          </span>
+          <span class="sb-flex-spacer"></span>
+          <span class="sb-userinfo-wrapper">
+            <div class="sb-userinfo-name">
+                {{username}}
+            </div>
+          </span>
+          <span class="sb-settings-wrapper">
+              <button mat-icon-button (click)="logout()">
+                <mat-icon>power_settings_new</mat-icon>
+              </button>
+          </span>
+      </span>
+  </mat-toolbar>
+  <div class="sb-body sb-body-home">
+    <router-outlet></router-outlet>
+  </div>
+</div>

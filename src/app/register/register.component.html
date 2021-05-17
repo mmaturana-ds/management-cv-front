@@ -1,0 +1,81 @@
+<div class="sb-app sb-app-login">
+    <div class="sb-card-login-wrapper">
+        <mat-card class="sb-card-wizard">
+            <button class="sb-wizard-back" mat-icon-button aria-label="Volver"
+                style="margin-top: 14px;"
+                routerLink='/login'>
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <form [formGroup]="signupForm" class="sb-table-cell-container">
+                <div style="margin-top: -14px;">
+                    <div style="height: 20px;"></div>
+                    <div id="logo">
+                        <img alt="" src="assets/logo.png" width="164" height="60" >
+                    </div>
+                    <div style="height: 20px;"></div>
+                    <h2>Crea tu cuenta</h2>
+                    <div style="height:10px;"></div>
+
+                    <div class="sb-form-table" style="text-align: left;">
+                        <div class="sb-form-table-cell">
+                            <div class="sb-form-field">
+                                <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                    <input matInput placeholder="Ingresa tu email" type="text" id="email" formControlName="email" required>
+                                </mat-form-field>
+                                <mat-error
+                                    *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched"
+                                    class="help-block">
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sb-form-table" style="text-align: left;">
+                        <div class="sb-form-table-cell">
+                            <div class="sb-form-field">
+                                <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                    <input matInput placeholder="Ingresa tu nombre de usuario" type="text" id="username" formControlName="username"required>
+                                </mat-form-field>
+                                <mat-error
+                                    *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched"
+                                    class="help-block">
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sb-form-table">
+                        <div class="sb-form-table-cell">
+                            <div class="sb-form-field">
+                                <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                        <input matInput placeholder="Ingresa tu contraseña" type="password" id="password" formControlName="password" required>
+                                </mat-form-field>
+                                <mat-error
+                                    *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched"
+                                    class="help-block">
+                                </mat-error>  
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="sb-login-message" *ngIf="regMessage">
+                    {{regMessage}}
+                </div>
+                <div class="sb-flex-spacer"></div>
+
+                <div class="sb-flex-display" style="margin-top:10px;flex-direction: column;padding: 0 10px;">
+                    <button mat-raised-button color="primary"
+                        [disabled]="disabledRegister"
+                        (click)="signup()">
+                        Crear cuenta
+                    </button>
+                </div>
+                <mat-spinner diameter="20" strokeWidth="3"
+                    style="margin-left: 10px;"
+                    *ngIf="isLoading">
+                </mat-spinner>
+            </form>
+        </mat-card>
+    </div>
+</div>

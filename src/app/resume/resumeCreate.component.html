@@ -1,0 +1,334 @@
+<div class="sb-content">
+    <div style="position: relative;">
+        <div *ngIf="isLoading" class="sb-loading-content sb-simple-loading">
+            <mat-spinner diameter="35" strokeWidth="5"
+                style="margin-top: 110px;">
+            </mat-spinner>
+        </div>
+        <div style="height: 20px;"></div>
+        <div class="sb-wizard-wrapper" *ngIf="!isLoading && username">
+            <div class="mcv-group-wrapper">
+                <div class="sb-title-big">Crear currículum</div>
+            </div>
+          <div class="sb-wizard-form">
+              <mat-card class="sb-card-wizard">
+                  <form [formGroup]="resumeForm">
+                      <mat-horizontal-stepper #wizardStepper linear class="sb-horizontal-stepper">
+                          <!-- step 0 -->
+                          <mat-step>
+                              <div class="sb-title-wizard">Completa la información personal y de contacto</div>
+                              <div style="height: 20px;"></div>
+                              <div class="sb-form-table">
+                                  <div class="sb-form-table-cell width-50">
+                                      <div class="sb-form-field">
+                                          <span class="sb-form-label">
+                                              Nombre:
+                                          </span>
+                                          <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                              <input matInput formControlName="nombre" maxlength="100"
+                                                  placeholder="Nombre">
+                                          </mat-form-field>
+                                      </div>
+                                  </div>
+                                  <div class="sb-form-table-cell width-50">
+                                      <div class="sb-form-field">
+                                          <span class="sb-form-label">
+                                              Email:
+                                          </span>
+                                          <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                              <input matInput formControlName="email" maxlength="100"
+                                                  placeholder="usuario@example.com">
+                                          </mat-form-field>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="sb-form-table">
+                                  <div class="sb-form-table-cell width-50">
+                                      <div class="sb-form-field">
+                                          <span class="sb-form-label">
+                                              Teléfono:
+                                          </span>
+                                          <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                              <input matInput formControlName="fono" maxlength="12"
+                                                  placeholder="+56912345678">
+                                          </mat-form-field>
+                                      </div>
+                                  </div>
+                                  <div class="sb-form-table-cell width-50">
+                                      <div class="sb-form-field">
+                                          <span class="sb-form-label">
+                                              Dirección:
+                                          </span>
+                                          <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                              <input matInput formControlName="direccion" maxlength="100"
+                                                  placeholder="Av test 123">
+                                          </mat-form-field>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="sb-form-table">
+                                  <div class="sb-form-table-cell width-50">
+                                      <div class="sb-form-field">
+                                          <span class="sb-form-label">
+                                              Fecha nacimiento:
+                                          </span>
+                                          <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                              <input matInput formControlName="fechaNacimiento" type="date"
+                                                  placeholder="2021-01-01">
+                                          </mat-form-field>
+                                      </div>
+                                  </div>
+                                  <div class="sb-form-table-cell width-50">
+                                    <div class="sb-form-field">
+                                        <span class="sb-form-label">
+                                            Nacionalidad:
+                                        </span>
+                                        <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                            <input matInput formControlName="nacionalidad" maxlength="100"
+                                                placeholder="Chileno(a)">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                              </div>
+                          </mat-step>
+
+                        <!-- step 1 -->
+                        <mat-step>
+                            <button class="sb-wizard-back" mat-icon-button aria-label="Volver"
+                                (click)="previousStep()" style="margin-top: 6px;">
+                                <mat-icon>arrow_back</mat-icon>
+                            </button>
+                            <div class="sb-title-wizard">Sube las siguientes imágenes</div>
+                            <div style="height: 20px;"></div>
+                            <div class="cv-custom-table">
+                                <div class="cv-custom-table-cell width-50" style="text-align: center;">
+                                    <div>
+                                        <button mat-raised-button color="primary" (click)="fileAvatarInput.click()">Subir foto perfil</button>
+                                        <input #fileAvatarInput type="file" class="sb-hidden"
+                                            (change)="uploadAvatar($event)" accept="image/png, image/jpeg, image/gif">
+                                    </div>
+                                    <div style="padding: 10px;">
+                                        <div *ngIf="urlAvatar">
+                                            <img class="sb-big-preview-image"
+                                                [src]="urlAvatar"
+                                                (click)="fileAvatarImage.click()">
+                                            <input #fileAvatarImage type="file" class="sb-hidden"
+                                                (change)="uploadAvatar($event)" accept="image/png, image/jpeg, image/gif">
+                                        </div>   
+                                    </div>
+                                </div>
+                                <div class="cv-custom-table-cell width-50" style="text-align: center;">
+                                    <div>
+                                        <button mat-raised-button color="primary" (click)="fileBannerUrl.click()">Subir banner</button>
+                                        <input #fileBannerUrl type="file" class="sb-hidden"
+                                            (change)="uploadBanner($event)" accept="image/png, image/jpeg, image/gif">
+                                    </div>
+                                    <div style="padding: 10px;">
+                                        <div *ngIf="urlBanner">
+                                            <img class="sb-big-preview-image"
+                                                [src]="urlBanner"
+                                                (click)="filebannerUrl.click()">
+                                            <input #filebannerUrl type="file" class="sb-hidden"
+                                                (change)="uploadBanner($event)" accept="image/png, image/jpeg, image/gif">
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-step>
+  
+                          <!-- step 2 -->
+                          <mat-step>
+                              <button class="sb-wizard-back" mat-icon-button aria-label="Volver"
+                                  (click)="previousStep()" style="margin-top: 6px;">
+                                  <mat-icon>arrow_back</mat-icon>
+                              </button>
+                              <div class="sb-title-wizard">Agrega tus Habilidades</div>
+                              <div style="height: 20px;"></div>
+                              <table class="sb-table">
+                                  <thead>
+                                      <tr>
+                                          <th scope="col">
+                                              Título
+                                          </th>
+                                          <th scope="col">
+                                              Nota
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr class="sb-table-row-action" *ngFor="let skill of skills"
+                                          (click)="editSkillDialog(skill)">
+                                          <td data-label="Nombre" class="sb-table-cell">
+                                              {{skill.nombre}}
+                                          </td>
+  
+                                          <td data-label="Nota" class="sb-table-cell">
+                                              <mat-progress-bar mode="determinate" [value]="skill.nota"></mat-progress-bar>
+                                          </td>
+                                      </tr>
+                                      <tr class="sb-table-row-action" (click)="openAddSkillDialog()">
+                                          <td class="sb-table-cell" colspan="6" style="text-align: center;">
+                                              <mat-icon>add</mat-icon>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </mat-step>
+  
+                          <!-- step 3 -->
+                          <mat-step>
+                              <button class="sb-wizard-back" mat-icon-button aria-label="Volver"
+                                  (click)="previousStep()" style="margin-top: 6px;">
+                                  <mat-icon>arrow_back</mat-icon>
+                              </button>
+                              <div class="sb-title-wizard">Agrega tus Experiencias</div>
+                              <div style="height: 20px;"></div>
+                              <table class="sb-table">
+                                  <thead>
+                                      <tr>
+                                          <th scope="col">
+                                              Título
+                                          </th>
+                                          <th scope="col">
+                                              Descripción
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr class="sb-table-row-action" *ngFor="let experience of experiences"
+                                          (click)="editExperienceDialog(experience)">
+                                          <td data-label="Nombre" class="sb-table-cell">
+                                              {{experience.nombre}}
+                                          </td>
+  
+                                          <td data-label="Descripción" class="sb-table-cell">
+                                              {{experience.descripcion}}
+                                          </td>
+                                      </tr>
+                                      <tr class="sb-table-row-action" (click)="openAddExperienceDialog()">
+                                          <td class="sb-table-cell" colspan="6" style="text-align: center;">
+                                              <mat-icon>add</mat-icon>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </mat-step>
+  
+                          <!-- step 4 -->
+                          <mat-step>
+                              <button class="sb-wizard-back" mat-icon-button aria-label="Volver"
+                                  (click)="previousStep()" style="margin-top: 6px;">
+                                  <mat-icon>arrow_back</mat-icon>
+                              </button>
+                              <div class="sb-title-wizard">Agrega tus Estudios</div>
+                              <div style="height: 20px;"></div>
+                              <table class="sb-table">
+                                  <thead>
+                                      <tr>
+                                          <th scope="col">
+                                              Título
+                                          </th>
+                                          <th scope="col">
+                                              Descripción
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr class="sb-table-row-action" *ngFor="let study of studies"
+                                          (click)="editStudyDialog(study)">
+                                          <td data-label="Nombre" class="sb-table-cell">
+                                              {{study.nombre}}
+                                          </td>
+  
+                                          <td data-label="Descripción" class="sb-table-cell">
+                                              {{study.descripcion}}
+                                          </td>
+                                      </tr>
+                                      <tr class="sb-table-row-action" (click)="openAddStudyDialog()">
+                                          <td class="sb-table-cell" colspan="6" style="text-align: center;">
+                                              <mat-icon>add</mat-icon>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </mat-step>
+  
+                          <!-- step 5 -->
+                          <mat-step>
+                              <button class="sb-wizard-back" mat-icon-button aria-label="Volver"
+                                  (click)="previousStep()" style="margin-top: 6px;">
+                                  <mat-icon>arrow_back</mat-icon>
+                              </button>
+                              <div class="sb-title-wizard">Completa la información de la carta de presentación</div>
+                              <div style="height: 20px;"></div>
+                              <div class="sb-form-table">
+                                  <div class="sb-form-table-cell width-50">
+                                      <div class="sb-form-field">
+                                          <span class="sb-form-label">
+                                              Nombre empresa:
+                                          </span>
+                                          <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                              <input matInput formControlName="nombreEmpresa" maxlength="100"
+                                                  placeholder="Nombre empresa">
+                                          </mat-form-field>
+                                      </div>
+                                  </div>
+                                  <div class="sb-form-table-cell width-50">
+                                      <div class="sb-form-field">
+                                          <span class="sb-form-label">
+                                              Direccion empresa:
+                                          </span>
+                                          <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                              <input matInput formControlName="direccionEmpresa" maxlength="100"
+                                                  placeholder="Av test 123">
+                                          </mat-form-field>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="sb-form-table">
+                                  <div class="sb-form-table-cell width-50">
+                                      <div class="sb-form-field">
+                                          <span class="sb-form-label">
+                                              Introducción de Carta:
+                                          </span>
+                                          <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                              <textarea matInput formControlName="introduccionCarta" maxlength="200"
+                                                  [matAutosizeMinRows]="3" [matTextareaAutosize]="true"
+                                                  placeholder="Esta es la introducción de la carta">
+                                              </textarea>
+                                          </mat-form-field>
+                                      </div>
+                                  </div>
+                                  <div class="sb-form-table-cell width-50">
+                                      <div class="sb-form-field">
+                                          <span class="sb-form-label">
+                                              Cuerpo de Carta:
+                                          </span>
+                                          <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                              <textarea matInput formControlName="cuerpoCarta" maxlength="300"
+                                                  [matAutosizeMinRows]="3" [matTextareaAutosize]="true"
+                                                  placeholder="Este es el cuerpo de la carta">
+                                              </textarea>
+                                          </mat-form-field>
+                                      </div>
+                                  </div>
+                              </div>
+                          </mat-step>
+                      </mat-horizontal-stepper>
+                  </form>
+                  <div class="sb-flex-display" style="margin-top:30px;">
+                      <button class="sb-next-wizard" mat-raised-button color="primary" (click)="nextStep()"
+                          *ngIf="wizardStepper.selectedIndex < 5">
+                          Siguiente
+                      </button>
+                      <button class="sb-next-wizard" mat-raised-button color="primary" (click)="save()"
+                          [disabled]="saveState"
+                          *ngIf="wizardStepper.selectedIndex == 5">
+                          Crear
+                      </button>
+                  </div>
+              </mat-card>
+          </div>
+        </div>
+    </div>
+  </div>

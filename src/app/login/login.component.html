@@ -1,0 +1,65 @@
+ <div class="sb-app sb-app-login">
+    <div class="sb-card-login-wrapper">
+        <mat-card class="sb-card-wizard">
+            <form [formGroup]="signupForm" class="sb-table-cell-container">
+                <div style="margin-top: -14px;">
+                    <div style="height: 20px;"></div>
+                    <div id="logo">
+                        <img alt="" src="assets/logo.png" width="164" height="60" >
+                    </div>
+                    <div style="height: 20px;"></div>
+                    <h2>Te damos la bienvenida</h2>
+                    <div style="height:10px;"></div>
+                    <div class="sb-form-table">
+                        <div class="sb-form-table-cell">
+                            <div class="sb-form-field">
+                                <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                    <input matInput placeholder="Ingresa tu nombre de usuario" type="text" id="username" formControlName="username">
+                                </mat-form-field>
+                                <mat-error
+                                    *ngIf="!signupForm.get('username')!.valid && signupForm.get('username')!.touched"
+                                    class="help-block">
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sb-form-table">
+                        <div class="sb-form-table-cell">
+                            <div class="sb-form-field">
+                                <mat-form-field appearance="standard" class="sb-input-border sb-flex-display">
+                                        <input matInput placeholder="Ingresa tu contraseña" type="password" id="password" formControlName="password">
+                                </mat-form-field>
+                                <mat-error
+                                    *ngIf="!signupForm.get('password')!.valid && signupForm.get('password')!.touched"
+                                    class="help-block">
+                                </mat-error>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-login-message" *ngIf="loginmessage">
+                    {{loginmessage}}
+                </div>
+                <mat-spinner diameter="20" strokeWidth="3"
+                    *ngIf="isLoading">
+                </mat-spinner>
+                <div class="sb-flex-display" style="margin-top:10px;flex-direction: column;padding: 0 10px;">
+                    <button mat-raised-button color="primary"
+                        [disabled]="disabledLogin"
+                        (click)="login()">
+                        Iniciar sesión
+                    </button>
+                    <div style="height: 10px;"></div>
+                    <button mat-raised-button
+                        [routerLink]="['/register']">
+                        Crear Cuenta
+                    </button>
+                </div>
+            </form>
+        </mat-card>
+
+        <div class="sb-login-footer">
+            <span class="sb-logo-cognivit"></span>
+        </div>
+    </div>
+</div>
